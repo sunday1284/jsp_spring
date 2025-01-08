@@ -51,17 +51,11 @@ public class DollerM2Servlet extends HttpServlet {
 		if(amount <= 0) {
 			throw new IllegalArgumentException("달러 계산은 양의 정수만 처리 가능");
 		}else {
-<<<<<<< HEAD
 			long result = amount * 1470L; 
 			return result;
-=======
-			amount += 1470;
-			return amount;
->>>>>>> branch 'main' of https://github.com/sunday1284/jsp_spring.git
+			
 		}
-		
-		
-		
+			
 		
 	}
 }
