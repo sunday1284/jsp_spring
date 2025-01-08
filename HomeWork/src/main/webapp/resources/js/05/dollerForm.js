@@ -14,7 +14,11 @@ $(function() {
 			data: data,
 			success: function(resp) {
 				if (this.dataType == "json") {
+<<<<<<< HEAD
 					let spanTag = `<span>${String(resp.result)}원</span>`;
+=======
+					let spanTag = `<span>${resp.result}</span>`;
+>>>>>>> branch 'main' of https://github.com/sunday1284/jsp_spring.git
 					$resultArea.html(spanTag);
 				} else {
 					//dataType이 html이나 xml으로 바뀌었을때의 응답
