@@ -58,6 +58,7 @@
 			?파라미터명=파라미터값&파라미터명=파라미터값...
 		2) multipart 데이터 
 		3) request payload
+	
 </pre>
 </body>
 </html>
