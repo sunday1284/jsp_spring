@@ -37,6 +37,7 @@ public class ImageServlet extends HttpServlet {
             }
         }
 
+  
         // 이미지 목록 전달
         req.setAttribute("imageList", imageList);
 
