@@ -54,6 +54,15 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.14.0</version>
 		</dependency>
+		<!-- 객체 구조를 탐색하는 리플렉션 지원-->
+		<dependency>
+		    <groupId>commons-beanutils</groupId>
+		    <artifactId>commons-beanutils</artifactId>
+		    <version>1.9.4</version>
+		</dependency>
+
+		
+		
 		<!-- 단위 테스트 지원용-->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
