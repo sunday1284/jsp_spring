@@ -24,7 +24,7 @@ import kr.or.ddit.servlet07.vo.AlbaVO;
 public class FormProcessServlet extends HttpServlet{
 	
 	private Map<String, AlbaVO> albaTable = new HashMap<>();
-	
+	//asd
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// get 방식에서는 적용x -> server셋팅 useBodyEncodingForURI="true"가 필요
