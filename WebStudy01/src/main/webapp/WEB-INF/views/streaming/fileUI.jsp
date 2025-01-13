@@ -29,9 +29,6 @@
 </select>
 </form>
 <div id="result-area">
-	
-	
-	
 </div>
 <script src="<%=request.getContextPath() %>/resources/js/streaming/fileUI.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/js/jquery-3.7.1.min.js"></script>

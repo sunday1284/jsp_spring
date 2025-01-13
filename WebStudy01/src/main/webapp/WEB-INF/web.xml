@@ -12,6 +12,7 @@
 		<welcome-file>default.htm</welcome-file>
 		<welcome-file>default.jsp</welcome-file>
 	</welcome-file-list>
+	<!-- initParameter를 호출하기 위한 매핑 -> 디렉토리 지정 -->
 	<context-param>
 		<param-name>mediasFolder</param-name>
 		<param-value>D:/00.medias/</param-value>
