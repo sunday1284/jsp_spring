@@ -1,7 +1,6 @@
 package kr.or.ddit.servlet07;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.Collection;
