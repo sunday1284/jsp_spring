@@ -17,9 +17,9 @@ public class FileViewerServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
     
     //기본 디렉토리 설정 -> 본인 외장하드 디렉토리 -> 집에서 테스트를 위함
-    private static final String BASE_DIR = "E:/00.medias";
+//    private static final String BASE_DIR = "E:/00.medias";
     //기본 디렉토리 설정 -> 학원 디렉토리
-//  private static final String BASE_DIR = "D:/00.medias";
+  private static final String BASE_DIR = "D:/00.medias";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
