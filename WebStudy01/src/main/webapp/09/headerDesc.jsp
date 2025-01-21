@@ -65,7 +65,7 @@
 		 	--%>
 		 	<span id="server-time"></span>
 		 3. Cache-Control
-		 4. Location
+		 4. Location <a href="flowControl.jsp">흐름제어</a>
 </pre>
 
 <form method="post" action="${pageContext.request.contextPath }/09/file-upload.do"
