@@ -54,14 +54,23 @@
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		    <version>3.0.1</version>
 		</dependency>
-
-
+		
+		
 		<!-- JSON 변환 지원용-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		
+		<!--javaBean 규약 지원용-->
+			<dependency>
+			    <groupId>org.projectlombok</groupId>
+			    <artifactId>lombok</artifactId>
+			    <version>1.18.36</version>
+			</dependency>
+
+		
 		<!--commos 계열-->
 		<dependency>
 			<groupId>org.apache.commons</groupId>

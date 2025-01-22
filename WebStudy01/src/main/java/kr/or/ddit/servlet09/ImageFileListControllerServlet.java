@@ -18,7 +18,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/files")
+//마커 서블릿, loadOnStartup -> 서버 구동하면 바로 실행
+@WebServlet(value="/files", loadOnStartup = 1) // single value annotation
 public class ImageFileListControllerServlet extends HttpServlet {
 	
 	private ServletContext application;
@@ -32,6 +33,7 @@ public class ImageFileListControllerServlet extends HttpServlet {
 		Path parent = Paths.get(application.getInitParameter("mediasFolder"));
 		folderPath = parent.resolve("images");
 		application.setAttribute("folderPath", folderPath);
+		System.out.printf("%s 객체 생성 및 초기화 완료", this.getClass().getSimpleName());
 	}
 	
 	@Override

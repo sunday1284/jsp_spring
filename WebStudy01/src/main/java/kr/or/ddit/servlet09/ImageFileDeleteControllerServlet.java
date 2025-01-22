@@ -1,24 +1,19 @@
 package kr.or.ddit.servlet09;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 import org.apache.commons.lang3.StringUtils;
 
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 
-@WebServlet("/files/download")
-public class ImageFileDownloadControllerServlet extends HttpServlet{
-	
+@WebServlet(value="/files/delete")
+public class ImageFileDeleteControllerServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
@@ -38,21 +33,12 @@ public class ImageFileDownloadControllerServlet extends HttpServlet{
 			resp.sendError(400);
 			return;
 		}
-//		6. 검증 통과시, Content-Length 헤더를 파일의 크기로 결정.
-		resp.setContentLengthLong(Files.size(filePath));
-//		7. Content-Type 헤더를 바이트 스트림으로 결정.
-		resp.setContentType("application/octet-stream");
-//		8. Content-Disposition 헤더를 attatchment 타입으로 결정. filename 지시자로 저장 파일명 결정. 
-		String encodedFilename = URLEncoder.encode(filename, "utf-8")
-				.replaceAll("\\+", " ");
-		String pattern = "attatchment;filename=\"%s\"";
-		String dispositionValue = String.format(pattern, encodedFilename);
-		resp.setHeader("Content-Disposition",dispositionValue);
-//		9. 다운로드 처리를 위한 스트림 복사.
-		try(
-			OutputStream os = resp.getOutputStream();	
-		){
-			Files.copy(filePath, os);
-		}
+		//오류 났던 이유 -> getWriter로 resp를 보내버렸기때문에 안됐음..;
+		//6. 파일 삭제 
+		Files.delete(filePath);	
+		
+		//7. location 을 결정하고, 리다이렉트  
+		String location = req.getContextPath()+"/files";
+		resp.sendRedirect(location);
 	}
 }
