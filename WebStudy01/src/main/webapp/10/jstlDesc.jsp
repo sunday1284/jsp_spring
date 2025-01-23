@@ -49,7 +49,7 @@
 					<c:if test="${vs.first }">
 					-------------------------------
 					</c:if>
-						${i  }, count : ${vs.count}
+						${i }, count : ${vs.count}
 					<c:if test="${vs.last }">
 					===============================
 					</c:if>

@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import kr.or.ddit.servlet10.vo.GugudanVO;
 
 @WebServlet(value = "/gugudan", loadOnStartup = 2)
 public class GugudanServlet extends HttpServlet {
@@ -30,7 +31,10 @@ public class GugudanServlet extends HttpServlet {
 			maxDan = Integer.parseInt(max);
 		}
 		// 5.scoper 를 통해 구구단의 범위 전달
-		
+		GugudanVO vo = new GugudanVO(minDan, maxDan);
+//		vo.setMinDan(minDan);
+//		vo.setMaxDan(maxDan);
+		req.setAttribute("gugudan", vo);
 		// 6. 뷰 레이어 선택
 		req.setAttribute("section4", "/WEB-INF/views/10/gugudan.jsp");
 		String path = "/WEB-INF/views/files/layout.jsp";

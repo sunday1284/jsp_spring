@@ -54,7 +54,13 @@
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		    <version>3.0.1</version>
 		</dependency>
-		
+		<!--		데이터 베이스 연결지원-->
+		<dependency>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc17</artifactId>
+		    <version>23.6.0.24.10</version>
+		</dependency>
+
 		
 		<!-- JSON 변환 지원용-->
 		<dependency>

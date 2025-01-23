@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
-
 <style type="text/css">
 /* 	td,th { */
 /* 		border: 1px solid black; */
@@ -26,9 +25,11 @@
 <!-- 2단 ~ 9단까지 구구단 출력 (승수는 1~9까지...) -->
 사용자가 2단부터 13까지의 구구단에서 범위(최소단~최대단)를 설정할 수 있음.
 <form>
-	 <input type="number" min="2" max="13"name="minDan" />
+	 <input type="number" min="2" max="13" name="minDan" value="${gugudan.minDan }" />
 	 <select name="maxDan">
-	 	<option value="2">2단</option>
+	 	<c:forEach var="num" begin="2" end="13" varStatus="vs">
+	 		<option value="${num }" ${num eq gugudan.maxDan ? "selected" : "" }>${num }단</option>	 	 		
+	 	</c:forEach>
 	 </select>
 	<button type="submit">전송 </button>
 </form>
@@ -42,7 +43,7 @@
 		</tr>
 	</thead>
 	<tbody>	
-		<c:forEach var="dan" begin="2" end="9" step="1" varStatus="vs">
+		<c:forEach var="dan" begin="${gugudan.minDan }" end="${gugudan.maxDan }" step="1" varStatus="vs">
 			<c:choose>
 				<c:when test="${vs.first }">
 					<c:set var="clzValue" value="bg-danger"></c:set>
@@ -64,4 +65,9 @@
 		</c:forEach>
 	</tbody>
 </table>
-</html>
+<!-- <script type="text/javascript">
+	document.addEventListener("DOMContentLoaded", ()=>{
+		$('[name="minDan"]').val(`${gugudan.minDan}`);
+		$('[name=maxDan]').val("${gugudan.maxDan}");
+	})
+</script> -->
