@@ -21,7 +21,11 @@
 			<c:forEach items="${propList }" var="prop">
 				<tr>
 					<td>
+						<!-- 서블릿에서 받아온 매핑정보를 셋팅함 -> 파라미터+쿼리스트링값 -->
+						<!-- url-> /prop/detail?what=prop.propertyName -->
 						<c:url value="/prop/detail" var="detailUrl">
+							<!-- /prop/detail 에서 설정한 파라미터값을 셋팅   -->
+							<!-- 쿼리스트링 셋팅 -> prop.propertyName값으로 받아옴 -->
 							<c:param name="what" value="${prop.propertyName }"></c:param>
 						</c:url>
 						<a href="${detailUrl }">${prop.propertyName }</a>

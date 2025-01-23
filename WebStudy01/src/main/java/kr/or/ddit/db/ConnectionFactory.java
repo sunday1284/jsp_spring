@@ -46,6 +46,7 @@ public class ConnectionFactory {
 		}
 		
 	}
+	//신버전 -> 다른 db로 바꾸기 번거로움 -> 사용 x
 	public static Connection getConnectionBak(){
 		try {		
 			OracleDataSource ds = new OracleDataSource();
