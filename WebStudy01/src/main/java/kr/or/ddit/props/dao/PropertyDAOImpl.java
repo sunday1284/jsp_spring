@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.or.ddit.db.ConnectionFactory;
+import kr.or.ddit.db.ConnectionPoolingFactory;
 import kr.or.ddit.props.vo.PropertyVO;
 import oracle.jdbc.pool.OracleDataSource;
 
@@ -24,7 +25,7 @@ public class PropertyDAOImpl implements PropertyDAO {
 			List<PropertyVO> propList = new ArrayList<>();	
 			//2. try with resource 구문을 활용해 db 연동을 위한 작업을 수행함 () ->에서
 			try(
-				Connection conn = ConnectionFactory.getConnection();
+				Connection conn = ConnectionPoolingFactory.getConnection();
 				Statement stmt = conn.createStatement();
 			){
 				System.out.println(conn);
@@ -59,7 +60,7 @@ public class PropertyDAOImpl implements PropertyDAO {
 	public PropertyVO selectProperty(String propertyName) {
 		//1. db연결을 위한 작업
 		try(
-			Connection conn = ConnectionFactory.getConnection();
+			Connection conn = ConnectionPoolingFactory.getConnection();
 			Statement stmt = conn.createStatement();
 		){
 			//2. sql문 생성을 위한 StringBuffer값 초기화 -> 관련 sql문에 넘겨준 값을 셋팅한다.
