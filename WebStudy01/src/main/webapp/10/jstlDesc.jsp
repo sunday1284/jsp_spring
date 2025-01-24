@@ -49,7 +49,7 @@
 					<c:if test="${vs.first }">
 					-------------------------------
 					</c:if>
-						${i  }, count : ${vs.count}
+						${i }, count : ${vs.count}
 					<c:if test="${vs.last }">
 					===============================
 					</c:if>
@@ -63,6 +63,7 @@
 					${token * 1000}
 				</c:forTokens>
 				inti=3; 
+				
 				int i = 3;
 				아버지가방에들어가신다
 				아버지 가방에 들어가신다

@@ -39,6 +39,11 @@
 		<servlet-name>ServerTimeServlet</servlet-name>
 		<url-pattern>/02/now.do</url-pattern>
 	</servlet-mapping>
+	
+	<session-config>
+		<session-timeout>5</session-timeout>
+		<tracking-mode>COOKIE</tracking-mode>
+	</session-config>
 </web-app>
 
 
