@@ -12,9 +12,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "mtType")
-@ToString(exclude = {"mtType"})
+@ToString(exclude = "mtType")
 @Data
-public class mbtiVO implements Serializable {
+public class MbtiVO implements Serializable {
 	private String mtSort;
 	private transient String mtType;
 	private String mtTitle;
