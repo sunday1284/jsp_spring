@@ -22,20 +22,17 @@ public class MbtiServiceImpl implements MbtiService{
 
 	@Override
 	public int insertMbti(MbtiVO Mbti) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.insertMbti(Mbti);
 	}
 
 	@Override
 	public int updateMbti(MbtiVO Mbti) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.updateMbti(Mbti);
 	}
 
 	@Override
 	public int deleteMbti(String MtType) {
-		// TODO Auto-generated method stub
-		return 0;
+		return dao.deleteMbti(MtType);
 	}
 
 }

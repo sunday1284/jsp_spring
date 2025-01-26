@@ -12,11 +12,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "mtType")
-@ToString(exclude = "mtType")
 @Data
 public class MbtiVO implements Serializable {
-	private String mtSort;
-	private transient String mtType;
+	private int mtSort;
+	private String mtType;
 	private String mtTitle;
 	private String mtContent;
 }
