@@ -8,8 +8,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import kr.or.ddit.auth.service.AuthenticateService;
-import kr.or.ddit.auth.service.AuthenticateServiceImpl;
 import kr.or.ddit.member.vo.MemberVO;
 
 @WebServlet("/mypage")
