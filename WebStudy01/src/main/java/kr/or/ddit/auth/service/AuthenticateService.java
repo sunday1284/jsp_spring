@@ -1,4 +1,6 @@
-package kr.or.ddit.member.service;
+package kr.or.ddit.auth.service;
+
+import kr.or.ddit.member.vo.MemberVO;
 
 /**
  * 아이디와 비밀번호 기반의 인증 로직을 가진 Business logic layer
@@ -12,5 +14,5 @@ public interface AuthenticateService {
 	 * @param password
 	 * @return
 	 */
-	public boolean authenticate(String username, String password);
+	public MemberVO authenticate(String username, String password);
 }

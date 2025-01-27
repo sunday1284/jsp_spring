@@ -1,4 +1,4 @@
-package kr.or.ddit.member.controller;
+package kr.or.ddit.auth.controller;
 
 import java.io.IOException;
 

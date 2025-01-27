@@ -2,13 +2,17 @@ package kr.or.ddit.member.vo;
 
 import java.io.Serializable;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 /**
  * 회원관리를 위한 domain layer 
  */
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString(exclude = {"memPass","memRegno1","memRegno2"})
 @EqualsAndHashCode(of = "memId")
 @Data
