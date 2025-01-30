@@ -12,7 +12,7 @@
 		<jsp:include page="/WEB-INF/views/includee/title.jsp"/>
 	</header>
 	<main class ="bg-primary-subtle h-100">
-		<jsp:include page="${content }"/>
+		<jsp:include page="${content}"/>
 	</main>
 	<jsp:include page="/WEB-INF/views/includee/postScript.jsp"/>
 </body>

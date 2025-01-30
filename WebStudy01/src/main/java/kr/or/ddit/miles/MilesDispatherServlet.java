@@ -26,7 +26,7 @@ public class MilesDispatherServlet extends HttpServlet{
 		System.out.printf("servlet path : %s\n", servletPath);
 		String Content = "/WEB-INF/views/"+logicalName+".jsp";
 		req.setAttribute("content", Content);
-		String path="/WEB-INF/views/layouts/templateD.jsp";
+		String path="/WEB-INF/views/layouts/templateDashBoard.jsp";
 		req.getRequestDispatcher(path).forward(req, resp);
 	}
 }
