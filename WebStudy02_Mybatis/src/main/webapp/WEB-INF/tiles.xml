@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
+<tiles-definitions>
+<!-- 	컨트롤러의 logicalName 과 definition name이 연결됨. -->
+	<definition name="index" template="/WEB-INF/views/layouts/templateDashBoard.jsp">
+		<put-attribute name="preScript" value="/WEB-INF/views/includee/preScript.jsp"/>
+		<put-attribute name="header" value="/WEB-INF/views/includee/header.jsp"/>
+		<put-attribute name="sidebar" value="/WEB-INF/views/includee/sidebar.jsp"/>
+		
+		<put-attribute name="content" value="/WEB-INF/views/index.jsp"/>
+		
+		<put-attribute name="postScript" value="/WEB-INF/views/includee/postScript.jsp"/>
+	</definition>
+</tiles-definitions>
