@@ -26,7 +26,7 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO readMember(String memId) throws UserNotFoundException {
 		MemberVO member = dao.selectMember(memId);
-		if(member ==null) {
+		if(member == null) {
 			throw new UserNotFoundException(memId);
 		}
 		return member;

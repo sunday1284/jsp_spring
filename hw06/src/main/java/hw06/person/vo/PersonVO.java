@@ -15,7 +15,7 @@ public class PersonVO implements Serializable{
 	private transient String id;
 	private String name;
 	//성별 F or M
-	private boolean gender;
+	private String gender;
 	private int age;
 	private String address;
 }
