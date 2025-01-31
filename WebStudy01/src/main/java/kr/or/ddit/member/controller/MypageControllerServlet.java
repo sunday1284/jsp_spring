@@ -24,7 +24,13 @@ public class MypageControllerServlet extends HttpServlet{
 		req.setAttribute("member", authMember);
 		//Miles 활용 
 		String logicalName = "/member/memberDetail";
-		String path = "/"+logicalName+".miles";
-		req.getRequestDispatcher(path).forward(req, resp);
+		
+		if(logicalName.startsWith("redirect:")) {
+			String location = logicalName.replace("redirect:", req.getContextPath());
+			resp.sendRedirect(location);
+		}else {
+			String path = "/" + logicalName + ".miles";
+			req.getRequestDispatcher(path).forward(req, resp);
+		}
 	}
 }

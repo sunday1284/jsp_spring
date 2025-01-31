@@ -2,6 +2,8 @@ package kr.or.ddit.member.dao;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.member.vo.MemberVO;
@@ -11,12 +13,19 @@ class MemberDAOImplTest {
 
 	@Test
 	void testInsertMember() {
-		fail("Not yet implemented");
+		MemberVO dummy = dao.selectMember("a001");
+		System.out.printf("mem_bir : %s\n", dummy.getMemBir());
+		System.out.printf("mem_memorialday : %s\n", dummy.getMemMemorialday());
+		dummy.setMemId("a002");
+		assertDoesNotThrow(()->dao.insertMember(dummy));
 	}
 
 	@Test
 	void testSelectMemberList() {
-		fail("Not yet implemented");
+		assertDoesNotThrow(()->{
+			List<MemberVO> memberList = dao.selectMemberList();
+			assertNotEquals(0, memberList.size());
+		});
 	}
 
 	@Test
@@ -24,6 +33,8 @@ class MemberDAOImplTest {
 		assertDoesNotThrow(()->{
 			MemberVO member = dao.selectMember("b001");
 			assertNotNull(member);
+			assertEquals(false, member.isMemDelete());
+			member.isMemDelete();
 			String id = "admin' or ' 1'=' 1";
 			member = dao.selectMember(id);
 			assertNull(member);

@@ -25,8 +25,15 @@ public class MemberListControllerServlet extends HttpServlet{
 		//scope 저장
 		req.setAttribute("memberList", memberList);
 //		Miles
-		String path = "/member/memberList.miles";
-		req.getRequestDispatcher(path).forward(req, resp);
+		String logicalName = "member/memberList";
+		
+		if(logicalName.startsWith("redirect:")) {
+			String location = logicalName.replace("redirect:", req.getContextPath());
+			resp.sendRedirect(location);
+		}else {
+			String path = "/" + logicalName + ".miles";
+			req.getRequestDispatcher(path).forward(req, resp);
+		}
 		
 	}
 }

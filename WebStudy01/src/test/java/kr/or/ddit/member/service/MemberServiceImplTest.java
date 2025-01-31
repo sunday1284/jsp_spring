@@ -13,7 +13,9 @@ class MemberServiceImplTest {
 	MemberService service = new MemberServiceImpl();
 	@Test
 	void testCreateMember() {
-		fail("Not yet implemented");
+		MemberVO dummy = service.readMember("a002");
+		dummy.setMemId("a003");
+		assertTrue(service.createMember(dummy));
 	}
 
 	@Test

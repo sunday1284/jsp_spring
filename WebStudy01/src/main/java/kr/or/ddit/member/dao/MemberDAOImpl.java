@@ -12,13 +12,87 @@ import java.util.Properties;
 import kr.or.ddit.db.ConnectionPoolingFactory;
 import kr.or.ddit.member.vo.MemberVO;
 
+
+/**
+ * DATA MAPPING 시 주의사항 
+ * DATE 나 TIMESTAMP 에 해당하는 포로퍼티 타입을 String으로 설정한 경우.
+ * select 에서는 fomatting 이 필요 : TO_CHAR의 컬럼 알리아스가 필요함.
+ * insert/update 에서는 parsing 이 필요 : TO_DATE, TO_TIMESTAMP
+ */
 public class MemberDAOImpl implements MemberDAO {
 
 
 	@Override
 	public int insertMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO MEMBER (      ");
+		sql.append("	      MEM_ID          ");
+		sql.append("	    , MEM_PASS        ");
+		sql.append("	    , MEM_NAME        ");
+		sql.append("	    , MEM_REGNO1      ");
+		sql.append("	    , MEM_REGNO2      ");
+		sql.append("	    , MEM_BIR         ");
+		sql.append("	    , MEM_ZIP         ");
+		sql.append("	    , MEM_ADD1        ");
+		sql.append("	    , MEM_ADD2        ");
+		sql.append("	    , MEM_HOMETEL     ");
+		sql.append("	    , MEM_COMTEL      ");
+		sql.append("	    , MEM_HP          ");
+		sql.append("	    , MEM_MAIL        ");
+		sql.append("	    , MEM_JOB         ");
+		sql.append("	    , MEM_LIKE        ");
+		sql.append("	    , MEM_MEMORIAL    ");
+		sql.append("	    , MEM_MEMORIALDAY ");
+		sql.append("	    , MEM_MILEAGE     ");
+		sql.append("	) VALUES (            ");
+		sql.append("	      ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , TO_DATE(?, 'YYYY-MM-DD')               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , ?               ");
+		sql.append("	    , TO_DATE(?, 'YYYY-MM-DD')               ");
+		sql.append("	    , 3000            ");
+		sql.append("	)                     ");
+		try(
+			Connection conn = ConnectionPoolingFactory.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			
+			int idx = 1;
+			pstmt.setString(idx++, member.getMemId());
+			pstmt.setString(idx++, member.getMemPass());
+			pstmt.setString(idx++, member.getMemName());
+			pstmt.setString(idx++, member.getMemRegno1());
+			pstmt.setString(idx++, member.getMemRegno2());
+			pstmt.setString(idx++, member.getMemBir());
+			pstmt.setString(idx++, member.getMemZip());
+			pstmt.setString(idx++, member.getMemAdd1());
+			pstmt.setString(idx++, member.getMemAdd2());
+			pstmt.setString(idx++, member.getMemHometel());
+			pstmt.setString(idx++, member.getMemComtel());
+			pstmt.setString(idx++, member.getMemHp());
+			pstmt.setString(idx++, member.getMemMail());
+			pstmt.setString(idx++, member.getMemJob());
+			pstmt.setString(idx++, member.getMemLike());
+			pstmt.setString(idx++, member.getMemMemorial());
+			pstmt.setString(idx++, member.getMemMemorialday());
+			
+			
+			return pstmt.executeUpdate();
+		}catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
 	}
 
 	@Override
@@ -71,12 +145,8 @@ public class MemberDAOImpl implements MemberDAO {
 				String memMemorial = rs.getString("MEM_MEMORIAL");
 				String memMemorialday =  rs.getString("MEM_MEMORIALDAY");
 				Long memMileage = rs.getLong("MEM_MILEAGE");
-				String memDelete =  rs.getString("MEM_DELETE");
-				MemberVO memvo = new MemberVO(memId, memPass, memName, 
-						memRegno1, memRegno2, memBir, memZip, memAdd1, 
-						memAdd2, memHotel, memComtel, memHp, memMail, 
-						memJob, memLike, memMemorial, memMemorialday, 
-						memMileage, memDelete);
+				boolean memDelete =  rs.getBoolean("MEM_DELETE");
+				MemberVO memvo = new MemberVO(memId, memPass, memName, memRegno1, memRegno2, memBir, memZip, memAdd1, memAdd2, memHotel, memComtel, memHp, memMail, memJob, memLike, memMemorial, memMemorialday, memMileage, memDelete);
 				memList.add(memvo);	
 			}
 			
@@ -96,7 +166,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.append("    , MEM_NAME        ");
 		sql.append("    , MEM_REGNO1      ");
 		sql.append("    , MEM_REGNO2      ");
-		sql.append("    , MEM_BIR         ");
+		sql.append("    , TO_CHAR(MEM_BIR, 'YYYY-MM-DD') AS MEM_BIR        ");
 		sql.append("    , MEM_ZIP         ");
 		sql.append("    , MEM_ADD1        ");
 		sql.append("    , MEM_ADD2        ");
@@ -107,7 +177,7 @@ public class MemberDAOImpl implements MemberDAO {
 		sql.append("    , MEM_JOB         ");
 		sql.append("    , MEM_LIKE        ");
 		sql.append("    , MEM_MEMORIAL    ");
-		sql.append("    , MEM_MEMORIALDAY ");
+		sql.append("    , TO_CHAR(MEM_MEMORIALDAY, 'YYYY-MM-DD') AS MEM_MEMORIALDAY ");
 		sql.append("    , MEM_MILEAGE     ");
 		sql.append("    , MEM_DELETE        ");
 		sql.append(" FROM  MEMBER          ");
@@ -145,7 +215,7 @@ public class MemberDAOImpl implements MemberDAO {
 				member.setMemMemorial(rs.getString("MEM_MEMORIAL"));
 				member.setMemMemorialday(rs.getString("MEM_MEMORIALDAY"));
 				member.setMemMileage(rs.getLong("MEM_MILEAGE"));
-				member.setMemDelete(rs.getString("MEM_DELETE"));		
+				member.setMemDelete(rs.getBoolean("MEM_DELETE"));		
 			}		
 			
 			return member;

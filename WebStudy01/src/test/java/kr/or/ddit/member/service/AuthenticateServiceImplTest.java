@@ -4,8 +4,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import kr.or.ddit.auth.exception.AuthenticateException;
 import kr.or.ddit.auth.service.AuthenticateService;
 import kr.or.ddit.auth.service.AuthenticateServiceImpl;
+import kr.or.ddit.member.vo.MemberVO;
 
 class AuthenticateServiceImplTest {
 	
@@ -13,8 +15,9 @@ class AuthenticateServiceImplTest {
 	
 	@Test
 	void testAuthenticate() {
-//		boolean result = service.authenticate("b001", "1004");
-//		assertEquals(true, result);
+		assertThrows(AuthenticateException.class, ()->service.authenticate("b001", "1004"));
+		MemberVO result = service.authenticate("a004", "java");
+		assertNotNull(result);
 	}
 
 }

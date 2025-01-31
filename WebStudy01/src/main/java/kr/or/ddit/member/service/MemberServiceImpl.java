@@ -14,8 +14,8 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Override
 	public boolean createMember(MemberVO member) {
-		// TODO Auto-generated method stub
-		return false;
+		int rowcnt = dao.insertMember(member);
+		return rowcnt > 0;
 	}
 
 	@Override
