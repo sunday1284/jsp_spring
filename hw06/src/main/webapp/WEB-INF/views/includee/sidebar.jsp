@@ -16,9 +16,9 @@
              </a>
            </li>
            <li class="nav-item">
-             <a class="nav-link d-flex align-items-center gap-2" href="<c:url value ='/member/memberList.do'/>">
+             <a class="nav-link d-flex align-items-center gap-2" href="<c:url value ='/index.do'/>">
                <svg class="bi"><use xlink:href="#file-earmark"/></svg>
-               회원관리
+               참가자관리
              </a>
            </li>
            <li class="nav-item">

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c"%>
 <%-- ${memberList} --%>
 <table class = "col-10 table-bordered">
     <thead>

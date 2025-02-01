@@ -51,7 +51,7 @@
 	논리연산 : &&(and), ||(or), !(not)
 			${ true and true }, ${true and dummy }, ${false or "true" }, ${not dummy }
 	비교연산 : ==(eq), !=(ne), >(gt), >=(ge), <(lt), <=(le)
-			 ${3 lt 5 }, ${3 ne 5 }
+			 ${3 lt 5 }, ${3 ne 5}
 			 
 	3항연산자 : 조건식?참의표현식:거짓의표현식
 			${3 gt 5 ? "크다" : "작다"}

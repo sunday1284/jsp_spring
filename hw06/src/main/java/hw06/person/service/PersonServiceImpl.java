@@ -17,26 +17,26 @@ public class PersonServiceImpl implements PersonService {
 
 	@Override
 	public PersonVO ReadgetPerson(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return dao.getPerson(id);
 	}
 
 	@Override
 	public boolean CreatePerson(PersonVO person) {
-		// TODO Auto-generated method stub
-		return false;
+		int cnt = dao.insertPerson(person);
+		return cnt > 0;
 	}
 
 	@Override
 	public boolean ModifyPerson(PersonVO person) {
-		// TODO Auto-generated method stub
-		return false;
+		int cnt = dao.updatePerson(person);
+		return cnt > 0;
 	}
 
 	@Override
 	public boolean RemovePerson(String id) {
-		// TODO Auto-generated method stub
-		return false;
+		int cnt = dao.deletePerson(id);
+		return cnt > 0;
 	}
 	
 }

@@ -52,8 +52,44 @@ public class PersonDaoImpl implements PersonDao {
 
 	@Override
 	public PersonVO getPerson(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("	SELECT   ");
+		sql.append("    ID,      ");
+		sql.append("    NAME,    ");
+		sql.append("    GENDER,  ");
+		sql.append("    AGE,     ");
+		sql.append("    ADDRESS  ");
+		sql.append(" FROM         ");
+		sql.append("    PERSON   ");
+		sql.append(" WHERE   	 ");
+		sql.append(" 	ID = ?   ");
+		
+		try(
+			Connection conn = ConnectionPoolingFactory.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			pstmt.setString(1, id);
+			
+			ResultSet rs = pstmt.executeQuery();
+			
+			PersonVO person = null;
+			
+			if(rs.next()) {
+				person = new PersonVO();
+				person.setId(rs.getString("ID"));
+				person.setName(rs.getString("NAME"));
+				person.setGender(rs.getString("GENDER"));
+				person.setAge(rs.getInt("AGE"));
+				person.setAddress(rs.getString("ADDRESS"));
+			}
+			
+			return person;
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
 	}
 
 	@Override
@@ -72,19 +108,83 @@ public class PersonDaoImpl implements PersonDao {
 		sql.append(" 	    ,?           ");
 		sql.append(" 	    ,?           ");
 		sql.append(" 	)                 ");
-		return 0;
+		
+		try(
+			Connection conn = ConnectionPoolingFactory.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		){
+			int idx = 1;
+			
+			pstmt.setString(idx++, person.getId());
+			pstmt.setString(idx++, person.getName());
+			pstmt.setString(idx++, person.getGender());
+			pstmt.setInt(idx++, person.getAge());
+			pstmt.setString(idx++, person.getAddress());
+			
+			return pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 	@Override
 	public int updatePerson(PersonVO person) {
-		// TODO Auto-generated method stub
-		return 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append(" UPDATE PERSON    ");
+		sql.append(" SET              ");
+		sql.append("     NAME = ?,     ");
+		sql.append("     GENDER = ?,   ");
+		sql.append("     AGE = ?,      ");
+		sql.append("     ADDRESS = ?    ");
+		sql.append(" WHERE            ");
+		sql.append("     id = ?     ");
+		try (
+			Connection conn = ConnectionPoolingFactory.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		) {
+			int idx = 1;
+			pstmt.setString(idx++, person.getName());
+			pstmt.setString(idx++, person.getGender());
+			pstmt.setInt(idx++, person.getAge());
+			pstmt.setString(idx++, person.getAddress());
+			pstmt.setString(idx++, person.getId());
+			return pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
+		
 	}
 
 	@Override
 	public int deletePerson(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		StringBuffer sql = new StringBuffer();
+		sql.append(" DELETE FROM    ");
+		sql.append(" 	PERSON      ");
+		sql.append(" WHERE          ");
+		sql.append("     id = ?   ");
+		
+		try (
+			Connection conn = ConnectionPoolingFactory.getConnection();
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+		) {
+			pstmt.setString(1, id);
+			
+			return pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
+		
 	}
 	
 }
