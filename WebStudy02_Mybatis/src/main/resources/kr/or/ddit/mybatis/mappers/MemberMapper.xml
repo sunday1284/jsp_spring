@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- Mybatis랑 Daointerface는 1대 1 관계 -->
+<mapper namespace="kr.or.ddit.member.dao.MemberDAO">
+<!-- 	SqlMapper : 등록된 모든 쿼리는 쿼리 객체를 생성하고, 쿼리 맵(namespace+.+id, 쿼리 객체)을 형성하는데 사용됨. -->
+	<select id="selectMemberList" resultType="MemberVO">
+		SELECT  
+		     MEM_ID          
+		    , MEM_NAME               
+		    , MEM_ADD1       
+		    , MEM_HP         
+		    , MEM_MAIL       
+		    , MEM_MILEAGE    
+		 FROM  MEMBER        
+	</select>
+</mapper>

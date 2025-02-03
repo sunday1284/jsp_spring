@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <h4>${member.memName}님의정보</h4>
 <table class="table">
 	<tr>
@@ -78,6 +79,17 @@
 		<th>탈퇴여부</th>
 		<td>${member.memDelete}</td>
 	</tr>
+	
+	<!-- vo에서 해쉬코드값을 id로 해놨기때문에 따로 받기x  -->
+	<!-- 	선택적 랜더링 구조  -->
+	<c:if test="${member eq authMember}">
+		<tr>
+			<td colspan="2">
+				<a class="btn btn-primary" href="<c:url value='/member/memberUpdate.do'/>">회원정보 수정</a>
+				<button>회원탈퇴</button>
+			</td>
+		</tr>
+	</c:if>
 </table>
 
 

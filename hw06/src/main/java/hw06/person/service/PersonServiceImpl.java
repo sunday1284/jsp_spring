@@ -16,8 +16,7 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public PersonVO ReadgetPerson(String id) {
-		
+	public PersonVO ReadgetPerson(String id) {		
 		return dao.getPerson(id);
 	}
 

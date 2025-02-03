@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	version="3.1">
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
 	<display-name>WebStudy02_Mybatis</display-name>
 	<welcome-file-list>
 		<welcome-file>index.do</welcome-file>
 	</welcome-file-list>
+	<!-- 서버가 구동되면, TileContainer를 형성하고, 해당 컨테이너에서 tiles definitaion 들이 관리됨. -->
 	<listener>
 		<listener-class>org.apache.tiles.web.startup.simple.SimpleTilesListener</listener-class>
 	</listener>
 	
+	<!-- .tiles 확장자로 forwarding 하는 path로부터 추출된 logicalName을 denition으로 연결해주는 서블릿 -->
 	<servlet>
 		<servlet-name>TilesDispatchServlet</servlet-name>
 		<servlet-class>org.apache.tiles.web.util.TilesDispatchServlet</servlet-class>

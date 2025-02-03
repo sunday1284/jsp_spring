@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd" >
 <tiles-definitions>
-<!-- 	컨트롤러의 logicalName 과 definition name이 연결됨. -->
-	<definition name="index" template="/WEB-INF/views/layouts/templateDashBoard.jsp">
+	<definition name="abstractParent" template="/WEB-INF/views/layouts/templateDashBoard.jsp">
 		<put-attribute name="preScript" value="/WEB-INF/views/includee/preScript.jsp"/>
 		<put-attribute name="header" value="/WEB-INF/views/includee/header.jsp"/>
 		<put-attribute name="sidebar" value="/WEB-INF/views/includee/sidebar.jsp"/>
-		
-		<put-attribute name="content" value="/WEB-INF/views/index.jsp"/>
-		
 		<put-attribute name="postScript" value="/WEB-INF/views/includee/postScript.jsp"/>
 	</definition>
+
+<!-- 	admin/* admin logicalName값을 받아옴 -->
+	<definition name="admin/*/*" extends="abstractParent" template="관리자용 레이아웃">			
+		<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp"/>		
+	</definition>
+<!-- 	user/* user logicalName값을 받아옴 -->
+	<definition name="user/*/*" extends="abstractParent" template="일반 사용자용 레이아웃">			
+		<put-attribute name="content" value="/WEB-INF/views/user/{1}/{2}.jsp"/>		
+	</definition>
+
+<!-- 	*/* 모든 logicalName값을 받아옴  ex) member/memberList, member/memberDetail-->
+	<definition name="*/*" extends="abstractParent">			
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp"/>		
+	</definition>
+	
+<!-- 	컨트롤러의 logicalName 과 definition name이 연결됨. -->
+<!-- 	ex) "index" -->
+	<definition name="*" extends="abstractParent">	
+		<put-attribute name="content" value="/WEB-INF/views/{1}.jsp"/>	
+	</definition>
+	
+	
+	
 </tiles-definitions>

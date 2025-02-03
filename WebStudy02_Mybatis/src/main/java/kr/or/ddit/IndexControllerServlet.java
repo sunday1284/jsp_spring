@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class IndexControllerServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String logicalName = "index";
+		String logicalName = "index"; //타일즈 이름하고 같아야함
 		
 		if (logicalName.startsWith("redirect:")) {
 			String location = logicalName.replace("redirect:", req.getContextPath());

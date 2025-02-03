@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
@@ -15,6 +15,13 @@
 
 	
 	<tiles:insertAttribute name="preScript"/>
+	
+	<c:if test="${not empty message}">
+		<script>
+			alert("${message}");
+		</script>
+		<c:remove var="message" scope="session"/>
+	</c:if>
 
 
 <meta name="theme-color" content="#712cf9">
