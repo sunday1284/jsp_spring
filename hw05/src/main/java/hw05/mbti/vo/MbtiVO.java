@@ -11,7 +11,6 @@ import lombok.ToString;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "mtType")
 @Data
 public class MbtiVO implements Serializable {
 	private int mtSort;

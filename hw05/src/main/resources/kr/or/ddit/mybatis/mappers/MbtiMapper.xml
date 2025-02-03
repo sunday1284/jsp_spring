@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="hw05.mbti.dao.MbtiDAO">
+	<!--전체 리스트 출력  -->
+	<select id="MbtiList" resultType="MbtiVO">
+		 SELECT      
+			MT_SORT,   
+			MT_TYPE,   
+			MT_TITLE,  
+			MT_CONTENT 
+		 FROM          
+			 TB_MBTIDESC
+	</select>
+	<!-- 해당 정보 불러오기 -->
+	<select id="getMbti" resultType="MbtiVO" parameterType="String">
+		 SELECT         
+			MT_SORT,    
+			MT_TYPE,    
+			MT_TITLE,   
+			MT_CONTENT  
+		 FROM           
+			TB_MBTIDESC 
+		 WHERE          
+			MT_TYPE = #{mtType}
+	</select>
+	<!-- mbti 유형 추가  -> 파라미터값은 mapUnderscoreToCamelCase가 안먹히므로 vo에 있는 이름을 써줘야함!! -->
+	<insert id="insertMbti"  parameterType="MbtiVO">
+		INSERT INTO   
+		     TB_MBTIDESC   
+			 ( MT_SORT, 
+			    MT_TYPE,   
+			    MT_TITLE,  
+			    MT_CONTENT)
+		 VALUES( #{mtSort}, #{mtType}, #{mtTitle}, #{mtContent})		
+	</insert>
+	
+	<!-- mbti 유형 수정 
+		파라미터값은 mapUnderscoreToCamelCase가 안먹히므로 vo에 있는 이름을 써줘야함!! 
+	-->
+	<update id="updateMbti" parameterType="MbtiVO">
+		UPDATE TB_MBTIDESC  
+		   SET              
+			   MT_SORT =#{mtSort},     
+			   MT_TYPE =#{mtType},     
+			   MT_TITLE =#{mtTitle},    
+			   MT_CONTENT =#{mtContent}
+		WHERE            
+		       MT_TYPE = #{mtType}
+	
+	</update>
+	<!-- mbti 유형 삭제 
+		파라미터값은 mapUnderscoreToCamelCase가 안먹히므로 vo에 있는 이름을 써줘야함!! 
+	  -->
+	<delete id="deleteMbti" parameterType="String">
+		 DELETE              
+		 FROM                
+		     TB_MBTIDESC     
+		 WHERE               
+		     MT_TYPE = #{mtType}	 
+	</delete>
+	
+</mapper>
