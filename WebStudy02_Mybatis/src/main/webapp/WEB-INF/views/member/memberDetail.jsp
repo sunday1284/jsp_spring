@@ -86,10 +86,14 @@
 		<tr>
 			<td colspan="2">
 				<a class="btn btn-primary" href="<c:url value='/member/memberUpdate.do'/>">회원정보 수정</a>
-				<button>회원탈퇴</button>
+				<!--비밀번호 입력창에 뜨고 입력한 후 탈퇴처리  -->
+				<button id="delBtn" class="btn btn-danger" data-target-form="#deleteForm">회원탈퇴</button>
+				<form method="post" id="deleteForm" action="<c:url value='/member/memberDelete.do'/>">
+					<input type="text" name="password" />
+				</form>
 			</td>
 		</tr>
+		<script src="${pageContext.request.contextPath}/resources/js/member/memberDetail.js"></script>
 	</c:if>
 </table>
-
 

@@ -5,6 +5,8 @@
 	<settings>
 		<!-- _표기를 카멜로 바꿈  -->
 		<setting name="mapUnderscoreToCamelCase" value="true"/>
+		<!--이걸로 인한 인라인속성 생략 가능  -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
 	</settings>
 	<typeAliases>
 		<package name="kr.or.ddit.member.vo"/>

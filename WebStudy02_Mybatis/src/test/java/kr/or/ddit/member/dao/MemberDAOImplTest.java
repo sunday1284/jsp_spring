@@ -16,7 +16,7 @@ class MemberDAOImplTest {
 		MemberVO dummy = dao.selectMember("a001");
 		System.out.printf("mem_bir : %s\n", dummy.getMemBir());
 		System.out.printf("mem_memorialday : %s\n", dummy.getMemMemorialday());
-		dummy.setMemId("a002");
+		dummy.setMemId("n002");
 		assertDoesNotThrow(()->dao.insertMember(dummy));
 	}
 
@@ -31,7 +31,7 @@ class MemberDAOImplTest {
 	@Test
 	void testSelectMember() {
 		assertDoesNotThrow(()->{
-			MemberVO member = dao.selectMember("b001");
+			MemberVO member = dao.selectMember("a001");
 			assertNotNull(member);
 			assertEquals(false, member.isMemDelete());
 			member.isMemDelete();
@@ -51,9 +51,12 @@ class MemberDAOImplTest {
 		});
 	}
 
+	
 	@Test
 	void testDeleteMember() {
-		fail("Not yet implemented");
+		assertDoesNotThrow(()->{
+			assertEquals(1, dao.deleteMember("a001"));	
+		});
 	}
 
 }

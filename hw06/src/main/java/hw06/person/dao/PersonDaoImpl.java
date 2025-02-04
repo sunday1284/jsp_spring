@@ -16,7 +16,7 @@ public class PersonDaoImpl implements PersonDao {
 	public List<PersonVO> personList() {
 		
 		try(
-			SqlSession session = sqlSessionFactory.openSession();
+			SqlSession session = sqlSessionFactory.openSession(); 
 		){
 			
 			List<PersonVO> perList = new ArrayList<>();
@@ -37,7 +37,7 @@ public class PersonDaoImpl implements PersonDao {
 		){
 			PersonVO person = null;
 			
-			person = session.selectOne("hw06.person.dao.PersonDao.getPerson", id);
+			person = session.selectOne("hw06.person.dao.persondao.getperson", id);
 			
 			
 			return person;	

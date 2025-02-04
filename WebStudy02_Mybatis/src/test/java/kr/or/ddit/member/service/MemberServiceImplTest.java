@@ -46,7 +46,12 @@ class MemberServiceImplTest {
 
 	@Test
 	void testRemoveMember() {
-		fail("Not yet implemented");
+		MemberVO inputData = new MemberVO();
+		inputData.setMemId("j001");
+		inputData.setMemPass("asdqfasd");
+		assertThrows(AuthenticateException.class, ()-> service.removeMember(inputData));
+		inputData.setMemPass("6262");
+		assertTrue(service.removeMember(inputData)); 
 	}
 
 }

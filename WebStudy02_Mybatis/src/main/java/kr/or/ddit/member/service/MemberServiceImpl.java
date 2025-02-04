@@ -47,8 +47,12 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean removeMember(MemberVO inputData) throws AuthenticateException {
-		// TODO Auto-generated method stub
-		return false;
+		//1. 회원 인증 가져오기
+		authservice.authenticate(inputData.getMemId(), inputData.getMemPass());
+		//2. 인증 성공 -> 탈퇴 가능, 아니면 탈퇴 불가 
+		int rowcnt = dao.deleteMember(inputData.getMemId());
+		return rowcnt > 0;
+		
 	}
 
 }

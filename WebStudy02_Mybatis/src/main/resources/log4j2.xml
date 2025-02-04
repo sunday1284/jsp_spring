@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration xmlns="https://logging.apache.org/xml/ns"
+               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xsi:schemaLocation="
+                   https://logging.apache.org/xml/ns
+                   https://logging.apache.org/xml/ns/log4j-config-2.xsd">
+<!--   logging : 특정 매체에 일정한 메시지를 정해진 형식에 따라 기록하는 행위 -->
+<!--   appender : 메시지가 기록되는 매체. ex) console, file, database -->
+<!--   layout : 기록 메시지 포맷(형식) -->
+<!--   logger : 메시지 기록 행위의 주제, 메시지 출력 여부를 결정하는 설정의 주체.  -->
+<!--   level : 기록하는 메시지의 등급 -->
+<!--   		TRACE -> DEBUG -> INFO -> WARN -> ERROR -> FATAL -->
+<!-- 		메시지의 출력 여부를 결정할 떄 사용하고, -->
+<!-- 		logger에 설정된 레벨과 메시지 기록시 레벨이 동일하거나,  -->
+<!-- 		메시지의 레벨이 로거의 레벨보다 높으면 메시지가 기록됨. -->
+  <Appenders>
+    <Console name="CONSOLE">
+      <PatternLayout pattern="%c %p - %m%n"/>
+    </Console>
+  </Appenders>
+  <Loggers>
+    <Root level="ERROR">
+      <AppenderRef ref="CONSOLE"/>
+    </Root>
+    <Logger name="kr.or.ddit" level="INFO"/>
+    <Logger name="jdbc.sqltiming" level="DEBUG"/>
+  </Loggers>
+</Configuration>
