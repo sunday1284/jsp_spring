@@ -33,8 +33,12 @@ public class PersonMapperImpl implements PersonMapper {
 
 	@Override
 	public PersonVO selectPerson(String id) {
-		// TODO Auto-generated method stub
-		return null;
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			PersonMapper proxy = sqlSession.getMapper(PersonMapper.class);
+			return proxy.selectPerson(id);
+		}
 	}
 
 	@Override
@@ -45,8 +49,12 @@ public class PersonMapperImpl implements PersonMapper {
 
 	@Override
 	public int deletePerson(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			PersonMapper proxy = sqlSession.getMapper(PersonMapper.class);
+			return proxy.deletePerson(id);
+		}
 	}
 
 }

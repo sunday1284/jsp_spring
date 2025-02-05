@@ -24,5 +24,6 @@
     </Root>
     <Logger name="kr.or.ddit" level="INFO"/>
     <Logger name="jdbc.sqltiming" level="DEBUG"/>
+    <Logger name="jdbc.resultsettable" level="TRACE"/>
   </Loggers>
 </Configuration>

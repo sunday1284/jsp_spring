@@ -87,7 +87,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public int deleteMember(String memId) {
 		try(
 		    SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		){
+		){ 
 //			return sqlSession.delete("kr.or.ddit.member.dao.MemberDAO.deleteMember",memId);
 			MemberDAO proxy = sqlSession.getMapper(MemberDAO.class);
 			return proxy.deleteMember(memId);

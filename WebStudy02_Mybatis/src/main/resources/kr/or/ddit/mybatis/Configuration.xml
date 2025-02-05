@@ -11,6 +11,7 @@
 	<typeAliases>
 		<package name="kr.or.ddit.member.vo"/>
 		<package name="kr.or.ddit.person.vo"/>
+		<package name="kr.or.ddit.prod.vo"/>
 	</typeAliases>
 	<environments default="dev">
 		<environment id="dev">
@@ -29,5 +30,7 @@
 	<mappers>
 		<mapper resource="kr/or/ddit/mybatis/mappers/MemberMapper.xml"/>
 		<mapper resource="kr/or/ddit/mybatis/mappers/PersonMapper.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/ProdMapper.xml"/>
+		<mapper resource="kr/or/ddit/mybatis/mappers/LprodMapper.xml"/>
 	</mappers>
 </configuration>

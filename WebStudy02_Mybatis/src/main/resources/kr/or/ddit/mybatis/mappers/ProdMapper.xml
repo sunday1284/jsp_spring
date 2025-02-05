@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.prod.dao.ProdMapper">
+	<resultMap type="ProdVO" id="prodMap" autoMapping="true">
+		<association property="lprod" javaType="LprodVO" autoMapping="true"/>
+		<association property="buyer" javaType="BuyerVO" autoMapping="true" />
+	</resultMap>
+	<select id="selectProdList" resultMap="prodMap">
+		SELECT
+		    PROD_ID,
+		    PROD_NAME,
+		    P.LPROD_GU, LPROD_NM,
+		    P.BUYER_ID, BUYER_NAME,
+		    PROD_COST,
+		    PROD_PRICE,  
+		    PROD_TOTALSTOCK,    
+		    PROD_MILEAGE
+		FROM PROD P INNER JOIN LPROD LP ON(P.LPROD_GU = LP.LPROD_GU)
+					INNER JOIN BUYER B ON(P.BUYER_ID = B.BUYER_ID)
+	</select>
+	
+	<select id="selectProd" resultType="ProdVO">
+		SELECT
+		    PROD_ID,
+		    PROD_NAME,
+		    LPROD_GU,
+		    BUYER_ID,
+		    PROD_COST,
+		    PROD_PRICE,
+		    PROD_SALE,
+		    PROD_OUTLINE,
+		    PROD_DETAIL,
+		    PROD_IMG,
+		    PROD_TOTALSTOCK,
+		    TO_CHAR(PROD_INSDATE, 'YYYY-MM-DD') AS PROD_INSDATE,
+		    PROD_PROPERSTOCK,
+		    PROD_SIZE,
+		    PROD_COLOR,
+		    PROD_DELIVERY,
+		    PROD_UNIT,
+		    PROD_QTYIN,
+		    PROD_QTYSALE,
+		    PROD_MILEAGE
+		FROM
+		    PROD
+		WHERE 
+		    PROD_ID = #{prodId}
+	
+	</select>
+	
+</mapper>
