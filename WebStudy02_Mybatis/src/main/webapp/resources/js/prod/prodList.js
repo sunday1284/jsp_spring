@@ -1,6 +1,8 @@
 /**
  * 
  */
+
+
 document.addEventListener('DOMContentLoaded', function() {
     $("tr[data-prod-id]").on('click', function() {
         let $table = $(this).parents('table');

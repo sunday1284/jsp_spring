@@ -93,6 +93,7 @@
 				<button type="submit" class="btn btn-primary">전송</button>
 			</td>
 		</tr>
+	</table>
 </form>
 <!-- 프롬프트 예시 오라클의 "COLS", "USER_COL_COMMENTS" 의 스키마 뷰로 SELECT 쿼리를 만들어줘 ##레코드
 조회 결과 예시##

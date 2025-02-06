@@ -2,6 +2,7 @@ package kr.or.ddit.prod.service;
 
 import java.util.List;
 
+import kr.or.ddit.paging.PaginationInfo;
 import kr.or.ddit.prod.dao.ProdMapper;
 import kr.or.ddit.prod.dao.ProdMapperImpl;
 import kr.or.ddit.prod.exception.ProdNotExistException;
@@ -11,9 +12,13 @@ public class ProdServiceImpl implements ProdService {
 
 	private ProdMapper dao = new ProdMapperImpl();
 	@Override
-	public List<ProdVO> readProdList() {
-		return dao.selectProdList();
+	public List<ProdVO> readProdList(PaginationInfo<ProdVO> paging) {
+		int totalRecord = dao.selectTotalRecord(paging);
+		// 총 레코드 개수 셋팅
+		paging.setTotalRecord(totalRecord);
+		return dao.selectProdList(paging);
 	}
+	
 	
 	public ProdVO readProd(String prodId) throws ProdNotExistException{
 		ProdVO prod = dao.selectProd(prodId);

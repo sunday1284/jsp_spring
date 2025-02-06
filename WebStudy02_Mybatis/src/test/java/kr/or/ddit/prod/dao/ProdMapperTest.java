@@ -16,7 +16,7 @@ class ProdMapperTest {
 	@Test
 	void testSelectProdList() {
 		assertDoesNotThrow(()->{
-			List<ProdVO> prodList = dao.selectProdList();
+			List<ProdVO> prodList = dao.selectProdList(paging);
 			for(ProdVO p : prodList) {
 				log.info("lprod.lprodNm: {}, buyer.buyerName: {}",
 						p.getLprod().getLprodNm(),p.getBuyer().getBuyerName());

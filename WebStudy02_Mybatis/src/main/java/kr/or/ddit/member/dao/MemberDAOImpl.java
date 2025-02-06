@@ -14,6 +14,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.db.CustomSqlSessionFactoryBuilder;
 import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.paging.PaginationInfo;
+import kr.or.ddit.prod.dao.ProdMapper;
+import kr.or.ddit.prod.vo.ProdVO;
 
 
 /**
@@ -42,9 +45,19 @@ public class MemberDAOImpl implements MemberDAO {
 			return rowcnt;
 		}
 	}
+	
+	@Override
+	public int selectTotalRecord(PaginationInfo<MemberVO> paging) {
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			MemberDAO proxy = sqlSession.getMapper(MemberDAO.class);
+			return proxy.selectTotalRecord(paging);
+		}
+	}
 
 	@Override
-	public List<MemberVO> selectMemberList() {
+	public List<MemberVO> selectMemberList(PaginationInfo<MemberVO> paging) {
 		
 		try(
 			SqlSession sqlSession = sqlSessionFactory.openSession();	
@@ -53,11 +66,13 @@ public class MemberDAOImpl implements MemberDAO {
 //			sqlSession.update(null)
 //			List<MemberVO> memList = sqlSession.selectList("kr.or.ddit.member.dao.MemberDAO.selectMemberList");
 			MemberDAO proxy = sqlSession.getMapper(MemberDAO.class);
-			return proxy.selectMemberList();
+			return proxy.selectMemberList(paging);
 		}
 			
 	}
 
+	
+	
 	@Override
 	public MemberVO selectMember(String memId) {
 		try(
@@ -93,5 +108,7 @@ public class MemberDAOImpl implements MemberDAO {
 			return proxy.deleteMember(memId);
 		}
 	}
+
+	
 
 }

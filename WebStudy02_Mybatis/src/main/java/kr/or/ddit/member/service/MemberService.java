@@ -5,6 +5,7 @@ import java.util.List;
 import kr.or.ddit.auth.exception.AuthenticateException;
 import kr.or.ddit.member.exception.UserNotFoundException;
 import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.paging.PaginationInfo;
 
 /**
  * 회원 관리용(CRUD) Business Logic Layer
@@ -20,9 +21,10 @@ public interface MemberService {
 	
 	/**
 	 * 전체 회원 목록 조회(추후 페이징과 검색 적용 예정)
+	 * @param paging TODO
 	 * @return
 	 */
-	public List<MemberVO> readMemberList();
+	public List<MemberVO> readMemberList(PaginationInfo<MemberVO> paging);
 	
 	
 	/**

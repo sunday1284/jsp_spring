@@ -17,6 +17,9 @@ import lombok.ToString;
 @EqualsAndHashCode(of = "memId")
 @Data
 public class MemberVO implements Serializable{
+	//일련번호 
+	private int rnum;
+	
 	private String memId;
 	private transient String memPass;
 	private String memName;

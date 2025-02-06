@@ -29,6 +29,8 @@ import lombok.ToString;
 //@ToString(exclude = {"prodDetail"})
 
 public class ProdVO implements Serializable{
+	private int rnum;
+	
 	private String prodId;
 	private String prodName;
 	private String lprodGu;

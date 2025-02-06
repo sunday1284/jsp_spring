@@ -21,7 +21,7 @@ class MemberServiceImplTest {
 
 	@Test
 	void testReadMemberList() {
-		List<MemberVO> memberList = service.readMemberList();
+		List<MemberVO> memberList = service.readMemberList(paging);
 		assertTrue(memberList.size()>0);
 	}
 

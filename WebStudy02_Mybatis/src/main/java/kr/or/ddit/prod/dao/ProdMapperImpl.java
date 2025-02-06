@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.ddit.db.CustomSqlSessionFactoryBuilder;
+import kr.or.ddit.paging.PaginationInfo;
 import kr.or.ddit.prod.vo.ProdVO;
 
 public class ProdMapperImpl implements ProdMapper {
@@ -13,14 +14,23 @@ public class ProdMapperImpl implements ProdMapper {
 	private SqlSessionFactory sqlSessionFactory
 		= CustomSqlSessionFactoryBuilder.getSqlSessionFactory();
 	
-	
 	@Override
-	public List<ProdVO> selectProdList() {
+	public int selectTotalRecord(PaginationInfo<ProdVO> paging) {
 		try(
 			SqlSession sqlSession = sqlSessionFactory.openSession(true);
 		){
 			ProdMapper proxy = sqlSession.getMapper(ProdMapper.class);
-			return proxy.selectProdList();
+			return proxy.selectTotalRecord(paging);
+		}
+	}
+	
+	@Override
+	public List<ProdVO> selectProdList(PaginationInfo<ProdVO> paging) {
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			ProdMapper proxy = sqlSession.getMapper(ProdMapper.class);
+			return proxy.selectProdList(paging);
 		}
 		
 	}

@@ -23,7 +23,7 @@ class MemberDAOImplTest {
 	@Test
 	void testSelectMemberList() {
 		assertDoesNotThrow(()->{
-			List<MemberVO> memberList = dao.selectMemberList();
+			List<MemberVO> memberList = dao.selectMemberList(paging);
 			assertNotEquals(0, memberList.size());
 		});
 	}
