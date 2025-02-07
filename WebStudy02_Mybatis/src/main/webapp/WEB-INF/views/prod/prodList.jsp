@@ -51,14 +51,20 @@
 				${pagingHTML }	
 				<!-- 입력용 -->
 				<div id="search-ui">
-					<select name="searchType" data-init-value="${condition.searchType}">
-						<option value>전체</option>
-						<option value="lpord">상품분류</option>
-						<option value="buyer">제조사</option>
-						<option value="name" >상품명</option>
+					<select name="lprodGu" data-init-value="${condition.lprodGu }">
+						<option value>상품분류</option>
+						<c:forEach items="${lprodList}" var="lprod">
+							<option value="${lprod.lprodGu}">${lprod.lprodNm }</option>
+						</c:forEach>
 					</select>
-					<input type="text" name="searchWord" value="${condition.searchWord}"/>
-					<button type="button" id="search-btn">검색</button>
+					<select name="buyerId" data-init-value="${condition.buyerId }">
+						<option value>제조사선택</option>
+						<c:forEach items="${buyerList}" var="buyer">
+							<option value="${buyer.buyerId }">${buyer.buyerName }</option>
+						</c:forEach>
+					</select>
+					<input type="text" name="prodName" placeholder="상품명" value="${condition.prodName }"/>
+					<button type="button" id="search-btn">상세검색</button>
 				</div>
 			</td>
 		</tr>
@@ -67,8 +73,9 @@
 <!-- 전송용 -->
 <form id="search-form">
 	<input type="text" name="page"/>
-	<input type="text" name="searchType" value="${condition.searchType }"/>
-	<input type="text" name="searchWord" value="${condition.searchWord }"/>
+	<input type="text" name="lprodGu" value="${condition.lprodGu }"/>
+	<input type="text" name="buyerId" value="${condition.buyerId }"/>
+	<input type="text" name="prodName" value="${condition.prodName }"/>
 </form>
 <script src="${pageContext.request.contextPath }/resources/js/prod/prodList.js"></script>
 <script src="${pageContext.request.contextPath }/resources/js/common/paging.js"></script>

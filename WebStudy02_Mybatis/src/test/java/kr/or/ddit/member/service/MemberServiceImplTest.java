@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import kr.or.ddit.auth.exception.AuthenticateException;
 import kr.or.ddit.member.exception.UserNotFoundException;
 import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.paging.PaginationInfo;
 
 class MemberServiceImplTest {
 	MemberService service = new MemberServiceImpl();
@@ -21,6 +22,7 @@ class MemberServiceImplTest {
 
 	@Test
 	void testReadMemberList() {
+		PaginationInfo<MemberVO> paging = new PaginationInfo<>();
 		List<MemberVO> memberList = service.readMemberList(paging);
 		assertTrue(memberList.size()>0);
 	}

@@ -25,4 +25,11 @@ public interface ProdMapper {
 	 * @return 상품이 없는 경우, null반환
 	 */
 	public ProdVO selectProd(@Param("prodId") String prodId);
+	
+	/**
+	 * 상품 등록 
+	 * @param prod
+	 * @return
+	 */
+	public int insertProd(ProdVO prod);
 }

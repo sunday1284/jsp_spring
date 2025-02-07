@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <table class="table table-bordered">
 	<tr>
 		<td colspan="2">
@@ -45,8 +45,10 @@
 		<td>${prod.prodDetail}</td>
 	</tr>
 	<tr>
-		<th>이미지경로</th>
-		<td>${prod.prodImg}</td>
+		<th>이미지</th>
+		<td>
+			<img src="<c:url value='/resources/prodImages/${prod.prodImg}'/>" alt="" />
+		</td>
 	</tr>
 	<tr>
 		<th>총재고</th>

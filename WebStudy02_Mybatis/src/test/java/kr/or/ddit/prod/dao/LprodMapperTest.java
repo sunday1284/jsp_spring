@@ -16,5 +16,11 @@ class LprodMapperTest {
 		LprodVO lprod = dao.selectLprod("P101");
 		log.info("prodList : {}", lprod.getProdList());
 	}
+	
+	@Test
+	void testSelectLprodList() {
+		dao.selectLprodList()
+				.forEach(lp->log.info("NM, {},buyerList : {}",lp.getLprodNm(), lp.getBuyerList()));
+	}
 
 }

@@ -16,4 +16,11 @@ public interface ProdService {
 	 * @throws ProdNotExistException 상품이 없는 경우 발생하는 예외
 	 */
 	public ProdVO readProd(String prodId) throws ProdNotExistException;
+	
+	/**
+	 * 상품 등록
+	 * @param prod
+	 * @return
+	 */
+	public boolean createProd(ProdVO prod);
 }

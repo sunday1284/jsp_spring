@@ -4,6 +4,11 @@
 	<resultMap type="LprodVO" id="lprodMap" autoMapping="true">
 		<id column="LPROD_GU" property="lprodGu"/>
 		<collection property="prodList" ofType="ProdVO" autoMapping="true"/>
+		<!--수동으로 매핑했을떄   -->
+		<collection property="buyerList" ofType="BuyerVO">
+			<result column="BUYER_ID" property="buyerId"/>
+			<result column="BUYER_NAME" property="buyerName"/>
+		</collection>
 	</resultMap>
 	
 	<select id="selectLprod" resultMap="lprodMap">
@@ -13,5 +18,13 @@
 			ON (LP.LPROD_GU = P.LPROD_GU)
 		WHERE LP.LPROD_GU = #{lprodGu}
 	</select>
-
+	
+	<select id="selectLprodList" resultMap="lprodMap">
+		SELECT
+		    L.LPROD_GU, LPROD_NM
+		    , BUYER_ID, BUYER_NAME
+		FROM LPROD L LEFT OUTER JOIN BUYER B
+		    ON (L.LPROD_GU = B.LPROD_GU)
+	</select>
+	
 </mapper>

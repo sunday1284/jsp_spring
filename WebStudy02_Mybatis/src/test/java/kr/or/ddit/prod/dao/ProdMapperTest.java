@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.paging.PaginationInfo;
 import kr.or.ddit.prod.vo.ProdVO;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -16,6 +18,7 @@ class ProdMapperTest {
 	@Test
 	void testSelectProdList() {
 		assertDoesNotThrow(()->{
+			PaginationInfo<ProdVO> paging = new PaginationInfo<>();
 			List<ProdVO> prodList = dao.selectProdList(paging);
 			for(ProdVO p : prodList) {
 				log.info("lprod.lprodNm: {}, buyer.buyerName: {}",
@@ -29,9 +32,19 @@ class ProdMapperTest {
 		assertDoesNotThrow(()->{
 			ProdVO prod = dao.selectProd("P101000001");
 			assertNotNull(prod);
-			
+			log.info("입고일 : {}", prod.getProdInsdate());
 		});
 		
 		
+	}
+	@Test
+	void testInsertProd() {
+		ProdVO dummy = dao.selectProd("P101000001");
+		dummy.setProdId(null);
+		dummy.setProdName("신규상품");
+		
+		assertDoesNotThrow(()->{
+			assertEquals(1, dao.insertProd(dummy));		
+		});
 	}
 }

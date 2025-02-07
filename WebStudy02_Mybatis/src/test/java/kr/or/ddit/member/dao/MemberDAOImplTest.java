@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import kr.or.ddit.member.vo.MemberVO;
+import kr.or.ddit.paging.PaginationInfo;
 
 class MemberDAOImplTest {
 	MemberDAO dao = new MemberDAOImpl();
@@ -23,6 +24,7 @@ class MemberDAOImplTest {
 	@Test
 	void testSelectMemberList() {
 		assertDoesNotThrow(()->{
+			PaginationInfo<MemberVO> paging = new PaginationInfo<>();
 			List<MemberVO> memberList = dao.selectMemberList(paging);
 			assertNotEquals(0, memberList.size());
 		});

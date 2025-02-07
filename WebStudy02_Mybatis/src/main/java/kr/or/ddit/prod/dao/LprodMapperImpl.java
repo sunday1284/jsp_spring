@@ -1,5 +1,7 @@
 package kr.or.ddit.prod.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -19,5 +21,15 @@ public class LprodMapperImpl implements LprodMapper {
 			return proxy.selectLprod(lprodGu);
 		}
 	}
+	@Override
+	public List<LprodVO> selectLprodList() {
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			LprodMapper proxy = sqlSession.getMapper(LprodMapper.class);
+			return proxy.selectLprodList();
+		}
+	}
+	
 
 }

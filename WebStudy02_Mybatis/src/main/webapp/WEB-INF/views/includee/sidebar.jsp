@@ -33,6 +33,11 @@
               <i class="bi bi-circle"></i><span>상품목록</span>
             </a>
           </li>
+          <li>
+            <a href="${pageContext.request.contextPath}/prod/prodInsert.do">
+              <i class="bi bi-circle"></i><span>상품등록</span>
+            </a>
+          </li>
          </ul>
 		</li>
 		

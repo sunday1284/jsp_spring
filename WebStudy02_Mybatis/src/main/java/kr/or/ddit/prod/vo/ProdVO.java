@@ -1,6 +1,7 @@
 package kr.or.ddit.prod.vo;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -44,7 +45,8 @@ public class ProdVO implements Serializable{
 	@ToString.Exclude
 	private String prodImg;
 	private long prodTotalstock;
-	private String prodInsdate;
+	//date 일때 형변환
+	private LocalDate prodInsdate;
 	private long prodProperstock;
 	private String prodSize;
 	private String prodColor;
