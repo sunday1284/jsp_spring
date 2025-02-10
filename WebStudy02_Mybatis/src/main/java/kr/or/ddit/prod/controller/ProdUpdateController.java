@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,37 +30,33 @@ import kr.or.ddit.prod.vo.BuyerVO;
 import kr.or.ddit.prod.vo.LprodVO;
 import kr.or.ddit.prod.vo.ProdVO;
 
-@WebServlet("/prod/prodInsert.do")
+@WebServlet("/prod/prodUpdate.do")
 @MultipartConfig
-public class ProdInsertControllerServlet extends HttpServlet{
+public class ProdUpdateController extends HttpServlet {
 	
-	
-	//서비스 생성
-//	@Inject
+
 	private ProdService service = new ProdServiceImpl();
 	
-	private LprodMapper lprodDao = new LprodMapperImpl();
-	
-	public void addAttribute(HttpServletRequest req) {
-		List<LprodVO> lprodList = lprodDao.selectLprodList();
-		List<BuyerVO> buyerList = new ArrayList<>();
-		
-		for(LprodVO lp : lprodList) {
-		  List<BuyerVO> innerList =	lp.getBuyerList();
-		  if(innerList.isEmpty()) continue;
-		  else buyerList.addAll(innerList);
-		}
-		
-		
-		req.setAttribute("lprodList", lprodList);
-		req.setAttribute("buyerList", buyerList);
-	}
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		addAttribute(req);
-		String logicalName = "prod/prodForm";
+		//what 파라미터 수신
+		String prodId = req.getParameter("what");
 		
+		//필수 파라미터 누락시 400 에러 응답 
+		if (StringUtils.isBlank(prodId)) {
+			resp.sendError(400);
+			return;
+		}
+		
+		//what에 해당하는 상품 정보를 조회
+		ProdVO prod = service.readProd(prodId);
+		
+		//prod 속성명으로 reqeusqst scope에 저장
+		req.setAttribute("prod", prod);
+		
+		String logicalName = "prod/prodEdit";
+		//5.타일즈로 이동 
 		if (logicalName.startsWith("redirect:")) {
 			String location = logicalName.replace("redirect:", req.getContextPath());
 			resp.sendRedirect(location);
@@ -69,33 +64,31 @@ public class ProdInsertControllerServlet extends HttpServlet{
 			String path = "/" + logicalName + ".tiles";
 			req.getRequestDispatcher(path).forward(req, resp);
 		}
-	
 	}
-	
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//utf-8 셋팅 -> 이미 init으로 불러옴
-		//beanutils로 데이터를 불러옴
+		//1.VO 객체(command object) 생성
 		ProdVO prod = new ProdVO();
+		
+		//2. 파라미타 수신 ->BeanUtils.populate
 		try {
 			BeanUtils.populate(prod, req.getParameterMap());
 		} catch (IllegalAccessException | InvocationTargetException e) {
+			// RuntimeExeption으로 매핑하여 전환
 			throw new RuntimeException(e);
 		}
 		
-		//객체 검증 코드 필요!!
+		//검증 생략, 이후 스프링에서 추가 예정
 		
+		//상품 이미지 처리 
+		processProdImage(req, prod);
+		//3. 서비스에서 수정작업 시작
+		service.modifyProd(prod);
 		
-		//서비스에서 데이터를 받아옴
-		
-		processProdImage(req, prod); 
-		
-		service.createProd(prod);
-		
-		
+		//4.수정이 됐으면 리스트로 보내줌
 		String logicalName = "redirect:/prod/prodDetail.do?what="+prod.getProdId();
-		
+		//5.타일즈로 이동 
 		if (logicalName.startsWith("redirect:")) {
 			String location = logicalName.replace("redirect:", req.getContextPath());
 			resp.sendRedirect(location);
@@ -104,14 +97,15 @@ public class ProdInsertControllerServlet extends HttpServlet{
 			req.getRequestDispatcher(path).forward(req, resp);
 		}
 		
-	
+		
+		
 	}
 	
+	//이미지 url 생성
 	private String prodImagesUrl = "/resources/prodImages";
 	
 	private void processProdImage(HttpServletRequest req, ProdVO prod) throws IOException, ServletException {
 		//타입 체킹 ->instanceof
-		//이미 필터링된 조건이면
 		if(req instanceof MultipartHttpServletRequest) {
 			MultipartFile prodImage = ((MultipartHttpServletRequest) req).getFile("prodImage");
 			if(prodImage==null || prodImage.isEmpty()) {
@@ -124,8 +118,8 @@ public class ProdInsertControllerServlet extends HttpServlet{
 			Path filePath = Paths.get(folderPath, prodImg);
 			File destFile = new File(folderPath, prodImg);
 			prodImage.transferTo(destFile);
-			prod.setProdImg(prodImg); // 메타데이터 저장
+			prod.setProdImg(prodImg); //메타데이터 저장
 		}
-		
 	}
+	
 }

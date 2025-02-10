@@ -47,4 +47,16 @@ class ProdMapperTest {
 			assertEquals(1, dao.insertProd(dummy));		
 		});
 	}
+	
+	@Test
+	void testUpdateProd() {
+		ProdVO dummy = dao.selectProd("P101000001");
+		dummy.setProdCost(1000);
+		dummy.setProdOutline("수정된 상품 내용");
+		dummy.setProdImg("");
+
+		assertDoesNotThrow(() -> {
+			assertEquals(1, dao.updateProd(dummy));
+		});
+	}
 }

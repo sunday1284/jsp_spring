@@ -35,5 +35,11 @@ public class ProdServiceImpl implements ProdService {
 	public boolean createProd(ProdVO prod) {
 		return dao.insertProd(prod) > 0;
 	}
+
+
+	@Override
+	public boolean modifyProd(ProdVO prod) {
+		return dao.updateProd(prod) > 0;
+	}
 	
 }

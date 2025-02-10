@@ -6,6 +6,11 @@
 		<td colspan="2">
 			<!-- go -> index 값으로 가고싶은 경로 지정 -->
 			<button onclick="history.go(-1);">뒤로가기</button>
+			<c:url value='/prod/prodUpdate.do' var="updateUrl">
+				<c:param name="what" value="${prod.prodId}"/>
+			</c:url>
+			
+			<a class="btn-btn-primary" href="${updateUrl}">상품 수정</a>
 		</td>
 	</tr>
 	<tr>

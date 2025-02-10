@@ -58,4 +58,14 @@ public class ProdMapperImpl implements ProdMapper {
 			
 	}
 
+	@Override
+	public int updateProd(ProdVO prod) {
+		try(
+			SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		){
+			ProdMapper proxy = sqlSession.getMapper(ProdMapper.class);
+			return proxy.updateProd(prod);
+		}
+	}
+
 }

@@ -18,9 +18,16 @@ public interface ProdService {
 	public ProdVO readProd(String prodId) throws ProdNotExistException;
 	
 	/**
-	 * 상품 등록
+	 * 상품 정보 등록
 	 * @param prod
 	 * @return
 	 */
 	public boolean createProd(ProdVO prod);
+	
+	/**
+	 * 상품 정보 수정
+	 * @param prod
+	 * @return
+	 */
+	public boolean modifyProd(ProdVO prod);
 }

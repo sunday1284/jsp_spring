@@ -32,4 +32,11 @@ public interface ProdMapper {
 	 * @return
 	 */
 	public int insertProd(ProdVO prod);
+	
+	
+	/**
+	 * @param prod
+	 * @return
+	 */
+	public int updateProd(ProdVO prod);
 }

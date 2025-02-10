@@ -136,5 +136,27 @@
 				, #{prodMileage,jdbcType=NUMERIC}
 			)
 	</insert>
-	
+	<update id="updateProd">
+		UPDATE PROD
+		SET
+			 PROD_COST = #{prodCost,jdbcType=NUMERIC}
+			, PROD_PRICE = #{prodPrice,jdbcType=NUMERIC}
+			, PROD_SALE = #{prodSale,jdbcType=NUMERIC}
+			, PROD_OUTLINE = #{prodOutline,jdbcType=VARCHAR}
+			, PROD_DETAIL = #{prodDetail,jdbcType=CLOB}
+			, PROD_TOTALSTOCK = #{prodTotalstock,jdbcType=NUMERIC}
+			, PROD_PROPERSTOCK = #{prodProperstock,jdbcType=NUMERIC}
+			, PROD_SIZE = #{prodSize,jdbcType=VARCHAR}
+			, PROD_COLOR = #{prodColor,jdbcType=VARCHAR}
+			, PROD_DELIVERY = #{prodDelivery,jdbcType=VARCHAR}
+			, PROD_UNIT = #{prodUnit,jdbcType=VARCHAR}
+			, PROD_QTYIN = #{prodQtyin,jdbcType=NUMERIC}
+			, PROD_QTYSALE = #{prodQtysale,jdbcType=NUMERIC}
+			, PROD_MILEAGE = #{prodMileage,jdbcType=NUMERIC}
+			<!-- 이미지를 바꿀려고 하는경우 -> 동적인 컬럼은 맨 마지막에 -->
+			<if test="@org.apache.commons.lang3.StringUtils@isNotBlank(prodImg)">
+				, PROD_IMG = #{prodImg}
+			</if>
+		WHERE PROD_ID = #{prodId}
+	</update>
 </mapper>
