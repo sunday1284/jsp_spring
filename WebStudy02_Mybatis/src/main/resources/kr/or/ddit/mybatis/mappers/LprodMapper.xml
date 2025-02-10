@@ -4,7 +4,7 @@
 	<resultMap type="LprodVO" id="lprodMap" autoMapping="true">
 		<id column="LPROD_GU" property="lprodGu"/>
 		<collection property="prodList" ofType="ProdVO" autoMapping="true"/>
-		<!--수동으로 매핑했을떄   -->
+		<!--수동으로 매핑했을떄  일부 정보만 검색하고 싶을때  -->
 		<collection property="buyerList" ofType="BuyerVO">
 			<result column="BUYER_ID" property="buyerId"/>
 			<result column="BUYER_NAME" property="buyerName"/>
